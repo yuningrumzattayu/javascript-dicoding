@@ -1,0 +1,21 @@
+import {
+  makeCoffee,
+  sendCoffee,
+} from '../asynchronous-process/coffee-promise.mjs';
+
+const order = 'Kopi Espresso';
+
+console.log(`Saya memesan ${order} di kafe`);
+
+makeCoffee(order)
+  .then((value) => {
+    return sendCoffee(value);
+  })
+  .then((value) => {
+    console.log(`Pramusaji memberikan ${value} pesanan.`);
+    console.log(`Saya mendapatkan ${value} dan menghabiskannya.`);
+  })
+  .catch((error) => {
+    console.error(error.message);
+    throw error;
+  });
